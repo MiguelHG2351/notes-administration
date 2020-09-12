@@ -1,13 +1,5 @@
-# Proyecto esta creado con C, lenguaje de bajo nivel
+# Proyecto capaz de organizar las tareas de estudiantes
 
-# comando de ejecución
+# Inicia con NPM START O NPM RUN START
 
-- gcc home.c -o build/home.exe
-
-- index.exe
-
-## Se puede ejecutar en DevC++ y gcc, en dosbox no por los comentarios.
-
-# Se iba a utilizar el modulo FILE para guardar los datos pero ocurrio un error y no hay lectura de datos
-
-Puede ser por el compilador o la versión del lenguaje, C es muy antiguo por lo que siempre hay errores
+# Si quieres estar en modo de desarollo, NPM RUN DEV

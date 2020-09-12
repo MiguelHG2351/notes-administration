@@ -1,0 +1,25 @@
+<div class="container bg-primary">
+    <div class="col-md-4 mx-auto">
+        <div class="card text-center">
+            <div class="card-header">
+                <h1>New Note</h1>
+            </div>
+            <div class="card-body">
+                <form action="/notes/new-note" method="POST">
+                    <div class="form-group">
+                        <input type="text" placeholder="Escribe el titulo" name="title">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Escribe la descripción" name="description">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block">
+                            Enviar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

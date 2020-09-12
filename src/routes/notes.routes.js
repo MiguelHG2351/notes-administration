@@ -5,15 +5,15 @@ const { renderNotesFrom, createNewNotes, renderNotes, renderEditForm, updateNote
 
 router.get('/notes/add', renderNotesFrom)
 router.post('/notes/new-note', createNewNotes)
-router.get('notes', renderNotes)
+router.get('/notes', renderNotes)
 
 // Edit form
 
-router.get('notes/edit/:id', renderEditForm)
-router.put('notes/edit/:id', updateNotes)
+router.get('/notes/edit/:id', renderEditForm)
+router.put('/notes/edit/:id', updateNotes)
 
 // Delete Notes
 
-router.delete('notes/delete/:id', deleteNote)
+router.delete('/notes/delete/:id', deleteNote)
 
 module.exports = router

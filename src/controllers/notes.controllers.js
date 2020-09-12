@@ -1,33 +1,40 @@
 const notesCtrl = {}
 
-const Note = require('../models/Notes')
+const Notes = require('../models/Notes')
 
 notesCtrl.renderNotesFrom = (req, res) => {
     res.render('notes/index')
 }
 
-notesCtrl.createNewNotes = (req, res) => {
+notesCtrl.createNewNotes = async (req, res) => {
     const { title, description } = req.body
-    const newNote = new Note({title, description})
-    newNote.save()
+    const newNote = new Notes({title, description})
+    await newNote.save()
     console.log(newNote)
-    res.send('new notes created!')
+    res.redirect('/notes')
 }
 
-notesCtrl.renderNotes = (req, res) => {
-    res.send('render notes')
+notesCtrl.renderNotes = async (req, res) => {
+    const notes = await Notes.find()
+    res.render('notes/all-notes', {notes})
 }
 
-notesCtrl.renderEditForm = (req, res) => {
-    res.send('render Edit form')
+notesCtrl.renderEditForm = async (req, res) => {
+    const note = await Notes.findById(req.params.id)
+    res.render('notes/edit-notes', { note })
 }
 
-notesCtrl.updateNotes = (req, res) => {
-    res.send('update notes')
+notesCtrl.updateNotes = async (req, res) => {
+    const { title, description } = req.body
+    console.log(req.params.id)
+    await Notes.findByIdAndUpdate(req.params.id, { title, description })
+    res.redirect('/notes')
 }
 
-notesCtrl.deleteNote = (req, res) => {
-    res.send('delete ntoes')
+notesCtrl.deleteNote = async (req, res) => {
+    console.log('hola')
+    await Notes.findByIdAndDelete(req.params.id)
+    res.redirect('/notes')
 }
 
 module.exports = notesCtrl

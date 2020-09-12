@@ -106,16 +106,80 @@ void interface(char name, int nota, int arrows)
     }
     else if (arrows == 3)
     {
-        char nombre[20];
-        printf("Ingresa en Nombre del estudiante\n");
-        scanf("%s", &nombre);
-        for (i = 0; i <= 8; i++)
+        int nombre;
+        int notaNueva;
+        printf("Ingresa en número del estudiante\n");
+        scanf("%i", &nombre);
+        switch (nombre)
         {
+        case 1:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
 
-            if (nombre == payload[i].name)
-            {
-                printf("\nEse es el nombre\n");
-            }
+            break;
+        case 2:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
+
+            break;
+        case 3:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
+
+            break;
+        case 4:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
+
+            break;
+        case 5:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
+
+            break;
+        case 6:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
+
+            break;
+        case 7:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
+
+            break;
+        case 8:
+                printf("Ingresa la nueva nota de %s\n", payload[nombre-1].name);
+                scanf("%i", &notaNueva);
+                payload[nombre].notas = notaNueva;
+                printf("Listo!");
+                interface(name, nota, position);
+
+            break;
+        
+        default:
+            interface(name, nota, position);
+            break;
         }
     }
     else

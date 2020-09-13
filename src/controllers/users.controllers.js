@@ -1,6 +1,7 @@
 const  userCtrl = {}
 
 const User = require('../models/Users')
+const passport = require("passport")
 
 userCtrl.renderSingUpForm = (req, res) => {
     res.render('users/singup')
@@ -43,12 +44,16 @@ userCtrl.renderSingInForm = (req, res) => {
     res.render('users/singin')
 }
 
-userCtrl.singIn = (req, res) => {
-    res.send('singin')
-}
+userCtrl.singIn = passport.authenticate('local', {
+    failureRedirect: '/users/singin',
+    successRedirect: '/notes',
+    failureFlash: true
+})
 
 userCtrl.logout = (req, res) => {
-    res.send('logout')
+    req.logout()
+    req.flash('success_message', 'Logout to acount')
+    res.redirect('/users/singin/')
 }
 
 module.exports = userCtrl

@@ -7,8 +7,10 @@ const morgan = require('morgan')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
+const passport = require('passport')
 
 const app = express()
+require('./config/passport')
 
 // midldlewars
 app.use(express.json())
@@ -20,6 +22,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash())
 
 // Setting
@@ -39,6 +43,8 @@ app.set('view engine', '.hbs')
 app.use((req, res, next) => {
     res.locals.success_message = req.flash('success_message')
     res.locals.error_message = req.flash('error_message')
+    res.locals.error = req.flash('error')
+    res.locals.user = req.user || null
     next();
 })
 

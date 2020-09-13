@@ -14,7 +14,7 @@ Users.methods.encryptPassword = async password => {
     return await bcryp.hash(password, salt)
 }
 
-Users.method.matchPassword = async function (password) {
+Users.methods.matchPassword = async function (password) {
     return await bcryp.compare(password, this.password)
 }
 

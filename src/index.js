@@ -1,10 +1,12 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const path = require('path')
 const handlebard = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
-const path = require('path')
+const session = require('express-session')
+const flash = require('connect-flash')
 
 const app = express()
 
@@ -13,6 +15,12 @@ app.use(express.json())
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'))
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(flash())
 
 // Setting
 app.set("port", process.env.PORT || 5000)
@@ -28,10 +36,16 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs')
 
 // Global Variables
+app.use((req, res, next) => {
+    res.locals.success_message = req.flash('success_message')
+    res.locals.error_message = req.flash('error_message')
+    next();
+})
 
 // Route
 app.use(require('./routes/index.routes'))
 app.use(require('./routes/notes.routes'))
+app.use(require('./routes/users.routes'))
 
 app.use(express.static(path.join(__dirname, '../public')))
 

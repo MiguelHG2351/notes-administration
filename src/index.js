@@ -8,7 +8,10 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
-
+const webpack = require('webpack')
+const config = require("../webpack.config");
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const compiler = webpack(config)
 const app = express()
 require('./config/passport')
 
@@ -16,6 +19,9 @@ require('./config/passport')
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false}))
+app.use(webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath
+}))
 app.use(methodOverride('_method'))
 app.use(session({
     secret: 'secret',
@@ -27,7 +33,7 @@ app.use(passport.session())
 app.use(flash())
 
 // Setting
-app.set("port", process.env.PORT || 5000)
+app.set("port", process.env.PORT || 4000)
 app.set('views', path.join(__dirname, 'views'))
 app.engine('.hbs', exphbs({
     defaultLayout: 'main',

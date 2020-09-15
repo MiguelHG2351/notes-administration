@@ -9,6 +9,7 @@ module.exports = {
     path: path.join(__dirname, "build"),
     publicPath: "./",
   },
+  mode: 'production' ,
   module: {
     rules: [
       {
